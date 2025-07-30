@@ -10,6 +10,7 @@ import (
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc"
 	"github.com/c12s/nebula/internal/handlers"
+	"github.com/c12s/nebula/pkg/api"
 )
 
 
@@ -18,7 +19,7 @@ func main() {
 	nebula := handlers.NewNebulaGrpcHandler()
 
 	// s := grpc.NewServer(grpc.UnaryInterceptor(handlers.GetAuthInterceptor()))
-	api.RegisterMeridianServer(s, nebula)
+	api.RegisterNebulaServer(s, nebula)
 	reflection.Register(s)
 
 	lis, err := net.Listen("tcp", os.Getenv("LISTEN_ADDRESS"))
