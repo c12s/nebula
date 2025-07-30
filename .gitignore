@@ -164,3 +164,5 @@ fabric.properties
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/go,goland,visualstudiocode
+
+*.DS_Store
