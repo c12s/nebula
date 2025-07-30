@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "github.com/c12s/nebula/pkg/api";
+
+package proto;
+
+
+message AddDeploymentReq {
+  string version = 1;
+  Metadata metadata = 2;
+  Deployment deployment = 3;
+}
+
+message Metadata {
+  string name = 1;
+  string namespace = 2;
+  map<string, string> labels = 3;
+}
+
+message Deployment {
+  map<string, string> selector = 1;
+  repeated Container containers = 2;
+}
+
+message Container {
+  string name = 1;
+  string image = 2;
+  int32 replicas = 3;
+  map<string, int32> ports = 4;
+}
+
+message AddDeploymentResp {}
