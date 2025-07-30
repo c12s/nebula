@@ -3,14 +3,16 @@ package handlers
 import (
 	"context"
 	"github.com/c12s/nebula/pkg/api"
+	"github.com/c12s/nebula/internal/storage"
 )
 
 
 type NebulaGrpcHandler struct {
 	api.UnimplementedNebulaServer
+	Storage storage.Storage
 }
 
-func NewNebulaGrpcHandler() api.NebulaServer {
+func NewNebulaGrpcHandler(storage storage.Storage) api.NebulaServer {
 	return NebulaGrpcHandler{}
 }
 

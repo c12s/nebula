@@ -11,12 +11,15 @@ import (
 	"google.golang.org/grpc"
 	"github.com/c12s/nebula/internal/handlers"
 	"github.com/c12s/nebula/pkg/api"
+	"github.com/c12s/nebula/internal/storage/etcd"
 )
 
 
 func main() {
 	s := grpc.NewServer()
-	nebula := handlers.NewNebulaGrpcHandler()
+
+	_, storage := etcd.NewEtcdStorage()
+	nebula := handlers.NewNebulaGrpcHandler(storage)
 
 	// s := grpc.NewServer(grpc.UnaryInterceptor(handlers.GetAuthInterceptor()))
 	api.RegisterNebulaServer(s, nebula)
